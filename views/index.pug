@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Metric Imperial Converter
+        link(rel="stylesheet", href="style.css")
+    body
+     .container
+      .card
+       .docs  
+        .title Metric Imperial Converter : Documentation
+        ul
+            li End Point is 
+            code GET /api/convert
+            |with a single parameter containing an accepted number and unit and have it converted. eg.
+            code GET /api/convert?input=4km
+            |returns a JSON response.
+            code {"initNum":4,"initUnit":"km","returnNum":2.48548,"returnUnit":"mi","string":"4 kilometers converts to 2.48548 miles"}
+            li If unit and number are invalid or query parameter is other then "?input", return will be 'invalid unit'.
+            code /api/convert?input=12 or /api/convert?input=km12 or /api/convert?test=12km
+            |returns
+            code invalid unit
+            li Fractions can be used, in query parameter (ie. 5, 1/2, 2.5/6), but if nothing is provided it will default to 1. 
+        h3 Example Usage:
+        ul
+         li 
+            code /api/convert?input=4gal
+         li
+            code /api/convert?input=1/2km
+         li
+            code /api/convert?input=5.4/3lbs
+         li
+            code /api/convert?input=kg
+
+        h3 Example Return:
+        code {"initNum":1,"initUnit":"km","returnNum":0.62137,"returnUnit":"mi","string":"1 kilometers converts to 0.62137 miles"}  
+            
+       .usage
+        .title Usage
+        form#convertForm
+         input#user_input(type="text", name="input", placeholder="6km")
+         button#convert(type="button") Convert
+
+        p#result
+        #response
+      .the-guy by 
+        a(href="https://github.com/farhankk360" target="_blank") Farhan Ullah    
+    script(src='https://code.jquery.com/jquery-2.2.1.min.js', integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=', crossorigin='anonymous')
+    script(src="script.js") 
